@@ -54,4 +54,14 @@ void printArray(const std::vector<T> &arr, const std::string &delimiter = ", ",
     std::cout << end << '\n';
 }
 
+void printNumbers(int n)
+{
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j <= i; j++)
+            {
+                cout << j + 1 << " ";
+            }
+    }
+}
+
 #endif // UTILS
