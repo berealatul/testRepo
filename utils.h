@@ -9,9 +9,8 @@
 template <class T>
 T randomNumber(T low, T high)
 {
-    // static to avoid reseeding
-    static thread_local std::random_device rd;
-    static thread_local std::mt19937 gen(rd()); // Mersenne Twister 19937 generator
+    std::random_device rd;
+    std::mt19937 gen(rd()); // Mersenne Twister 19937 generator
 
     // constexpr for compile-time checks to improve clarity
     if constexpr (std::is_integral<T>::value)
@@ -22,11 +21,8 @@ T randomNumber(T low, T high)
     }
     else
     {
-        /* template instantiation in C++ occurs even for code
-           that is seemingly unreachable at runtime.
-           This behavior is a common gotcha when working with if constexpr in templated code.
-           Always ensure that invalid code for a particular template
-           instantiation is excluded from compilation using if constexpr and else.
+        /* "if constexpr" used for excluding some part of code which will be invalid for current case
+            template instantiation in C++ occurs even for code which is seemingly unreachable at runtime.
         */
         std::uniform_real_distribution<T> dist(low, high);
         return dist(gen);
