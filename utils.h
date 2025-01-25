@@ -33,7 +33,7 @@ template <class T>
 std::vector<T> randomArray(T low = 0, T high = 9, std::size_t length = 10)
 {
     std::vector<T> arr;
-    // use reserve when size is known and will fill it completely
+    // use reserve to allocate space for known size
     arr.reserve(length);
     for (std::size_t i = 0; i < length; ++i)
         arr.push_back(randomNumber<T>(low, high));
